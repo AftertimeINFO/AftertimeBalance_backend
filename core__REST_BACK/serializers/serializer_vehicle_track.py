@@ -9,6 +9,20 @@ from core import models
 #         model = models.BalanceSubstances
 #         fields = '__all__'
 
+
+class ShipsOnMapItem(serializers.Serializer):
+    # uuid = serializers.CharField(max_length=36)
+    lat = serializers.FloatField()
+    lon = serializers.FloatField()
+    course = serializers.IntegerField()
+    heading = serializers.IntegerField()
+    speed = serializers.IntegerField()
+
+
+# class ShipsOnMap(serializers.Serializer):
+#     items = ShipsOnMapItem(many=True)
+
+
 class ShipTrackItem(serializers.Serializer):
     # uuid = serializers.CharField(max_length=36)
     lat = serializers.FloatField()
@@ -23,8 +37,8 @@ class ShipTrackItem(serializers.Serializer):
     # current_moment = serializers.DateTimeField()
 
 
-class ShipTrack(serializers.Serializer):
-    items = ShipTrackItem(many=True)
+# class ShipTrack(serializers.Serializer):
+#     items = ShipTrackItem(many=True)
     # class Meta:
     #     model = models.BalanceSubstances
     #     fields = '__all__'

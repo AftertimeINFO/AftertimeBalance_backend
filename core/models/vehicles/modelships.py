@@ -30,6 +30,33 @@ class ManagerShips(models.Manager):
         else:
             return None
 
+    @staticmethod
+    def get_ships_on_map(lat: float, lon: float, zoom: int):
+        mlat = 1
+        mlon = 1
+        if zoom == 6:
+            mlat = 14
+            mlon = 40
+        elif zoom == 6:
+            mlat = 7
+            mlon = 20
+        elif zoom == 7:
+            mlat = 3.5
+            mlon = 10
+        elif zoom == 8:
+            mlat = 2
+            mlon = 5
+        elif zoom == 9:
+            mlat = 1
+            mlon = 2.5
+        elif zoom == 10:
+            mlat = 0.5
+            mlon = 1.5
+
+
+        return ModelShips.objects.filter(lat__gte=lat-mlat, lat__lte=lat+mlat, lon__gte=lon-mlon, lon__lte=lon+mlon)
+         # self.all()
+
 
 class ModelShips(models.Model):
     uuid = models.UUIDField(default=lib_uuid.uuid4, editable=False, primary_key=True)
@@ -95,6 +122,14 @@ class ModelShips(models.Model):
 
     def update_cur(self):
         ModelShips.update(ship=self)
+
+    def update_location(self, ship_obj):
+        self.lat = ship_obj.characteristics_in_space.lat
+        self.lon = ship_obj.characteristics_in_space.lon
+        self.course = ship_obj.characteristics_in_space.course
+        self.heading = ship_obj.characteristics_in_space.heading
+        self.speed = ship_obj.characteristics_in_space.speed
+        self.save()
 
     @staticmethod
     def update(

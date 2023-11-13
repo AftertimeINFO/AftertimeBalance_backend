@@ -20,7 +20,7 @@ class Ping(APIView):
         # status_resp = status.HTTP_200_OK
 
         # return Response(content, status=status_resp)
-        return Response("pong")
+        return Response("pong CORE__REST_FRONT_USER")
 
 class PingJSON(APIView):
     authentication_classes = [authentication.TokenAuthentication]

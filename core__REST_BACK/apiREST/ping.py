@@ -22,6 +22,7 @@ class Ping(APIView):
         # return Response(content, status=status_resp)
         return Response("pong CORE__REST_BACK")
 
+
 class PingJSON(APIView):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = (AllowAny,)

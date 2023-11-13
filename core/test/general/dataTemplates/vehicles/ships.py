@@ -16,6 +16,17 @@ def data():
     ]
 
 
+def map_positions():
+    return [
+        {
+            "c_lat": "45.34",
+            "c_lon": "28.97",
+            "c_zoom": "8",
+            "ships": ["349753"]
+        }
+    ]
+
+
 def data_no_changes():
     return [
         {

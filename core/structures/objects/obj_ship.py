@@ -66,6 +66,7 @@ class Ship:
 
     def __update_entry_characteristic_in_space(self, entry_characteristic_in_space):
         self.entry_characteristic_in_space = entry_characteristic_in_space
+        pass
 
     def get_json(self):
         if self.characteristics_in_space is not None:
@@ -281,6 +282,7 @@ class Ship:
             if self.changed_characteristics_in_space:
                 if ModelShipLocation.objects.check_needs_update(self):
                     new_ship_location = ModelShipLocation.create(self)
+                    self.entry.update_location(self)
                     self.__update_entry_characteristic_in_space(new_ship_location)
         else:
             # TODO Make log error: The call should not occur

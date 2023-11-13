@@ -4,6 +4,7 @@ from . import apiREST
 urlpatterns = [
     path('vehicle/ship', apiREST.ShipPosition.as_view()),
     path('vehicle/ship/track', apiREST.ShipTrack.as_view()),
+    path('vehicle/map/ships', apiREST.ShipsOnMap.as_view()),
     path('ping', apiREST.Ping.as_view()),
     # path('balance/substances', apiREST.BalanceListView.as_view()),
     # path('people', apiREST.PostListView.as_view()),

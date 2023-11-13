@@ -14,7 +14,7 @@ class Test_000_REST(APITestCase):
         # json_sent = json.dumps(ships.data())
 
         for cur_ship in ships.data():
-            result_get = self.client.post("/api/v1/back/vehicle/ship", cur_ship)
+            result_get = self.client.post("/api/v1/back/vehicle/ship", json.dumps(cur_ship), content_type="application/json")
             self.assertEqual(result_get.status_code, 200, "REST API Append Ship position error.")
             self.assertIsInstance(result_get.data, dict, "Incorrect response")
             self.assertIn("data", result_get.data, "Incorrect response dict structure")
@@ -33,15 +33,12 @@ class Test_000_REST(APITestCase):
             self.assertIn("lon", json_dict, "Incorrect response dict structure")
             self.assertEqual(float(json_dict["lat"]), float(cur_ship["position_lat"]), "Incorrect ship creation")
 
-        pass
-    # def test_001_Smoke(self):
-    #     resultGet = self.client.get("/pullgerAM/api/ping/")
-    #     self.assertEqual(resultGet.status_code, 200, "General API Critical error.")
-    #
-    #     self.client.credentials(HTTP_AUTHORIZATION="Token " + self.token)
-    #     resultGet = self.client.get("/pullgerAM/api/pingAuth/")
-    #
-    #     self.assertEqual(resultGet.status_code, 200, "General API Critical error with authentification.")
+        # -------------- Get Ships on Map
 
-    # def test_000_AccountAddforLinkedIN(self):
-    #     unitOperationsAMRest.add_account_for_linkedin(self)
+        for cur in ships.map_positions():
+            request_url = f"/api/v1/back/vehicle/map/ships?" \
+                                         f"c_lat={cur['c_lat']}&" \
+                                         f"c_lon={cur['c_lon']}&" \
+                                         f"c_zoom={cur['c_zoom']}"
+            result_get = self.client.get(request_url)
+            pass

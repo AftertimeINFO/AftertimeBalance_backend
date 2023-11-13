@@ -21,6 +21,11 @@ class ManagerShipLocation(models.Manager):
         ship = ModelShips.objects.get_by_uuid(uuid_ship)
         return ModelShipLocation.objects.filter(ship=ship)
 
+    @staticmethod
+    def get_track_by_mt(id_mt):
+        ship = ModelShips.objects.get_by_id_mt(id_mt)
+        return ModelShipLocation.objects.filter(ship=ship)
+
     def get_by_uuid_ship(self, uuid_ship: str):
         ship_entry = ModelShips.objects.get_by_uuid(uuid=uuid_ship)
         return self.filter(ship=ship_entry).prefetch_related('ship')
