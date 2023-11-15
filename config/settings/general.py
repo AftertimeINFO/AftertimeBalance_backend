@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from importlib.machinery import SourceFileLoader
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,30 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qlk@dkoo6aihra+5!9!ipr8^9efy8-#xpbhs5+no^v_c4hv5)u'
+# SECRET_KEY = 'django-insecure-qlk@dkoo6aihra+5!9!ipr8^9efy8-#xpbhs5+no^v_c4hv5)u'
+
+def generate_secret_key(filepath):
+    from django.core.management.utils import get_random_secret_key
+
+    secret_key_file = open(filepath, "w")
+    secret_key = 'SECRET_KEY= "' + get_random_secret_key() + '"\n'
+    secret_key_file.write(secret_key)
+    secret_key_file.close()
+
+def get_secret_key():
+    return SourceFileLoader("settings_secret_key", str(Path(__file__).resolve().parent.joinpath("settings_secret_key.py"))).load_module()
+
+lib = None
+try:
+    lib = get_secret_key()
+    pass
+except BaseException:
+    SETTINGS_DIR = os.path.abspath(os.path.dirname(__file__))
+    generate_secret_key(os.path.join(SETTINGS_DIR, 'settings_secret_key.py'))
+    lib = get_secret_key()
+    pass
+finally:
+    SECRET_KEY = lib.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
