@@ -11,17 +11,18 @@ class CharacteristicsInSpace:
         "heading",
         "speed",
         "lat",
-        "lon"
+        "lon",
+        "moment",
     )
 
     def __init__(self,
                  course,
                  heading,
                  speed,
+                 moment,
                  lat: (str, float) = None,
                  lon: (str, float) = None,
-                 earth_place: EarthPlace = None,
-                 **kwargs):
+                 earth_place: EarthPlace = None):
         self.earth_place = earth_place
         # ==================================================
         if course is not None:
@@ -41,6 +42,7 @@ class CharacteristicsInSpace:
         # ==================================================
         self.lat = lat
         self.lon = lon
+        self.moment = moment
 
     def get_json(self):
         structure = {
@@ -48,7 +50,8 @@ class CharacteristicsInSpace:
             "lon": self.lon,
             "speed": self.speed,
             "heading": self.heading,
-            "course": self.course
+            "course": self.course,
+            "moment": self.moment
         }
 
         return json.dumps(structure)

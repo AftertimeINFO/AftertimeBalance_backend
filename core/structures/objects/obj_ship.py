@@ -214,14 +214,14 @@ class Ship:
                      self.characteristics_in_space.heading != heading or
                      self.characteristics_in_space.speed != speed or
                      self.characteristics_in_space.moment != moment)
-            ):
+                ):
                 self.characteristics_in_space = CharacteristicsInSpace(
                     lat=lat,
                     lon=lon,
                     course=course,
                     heading=heading,
                     speed=speed,
-                    sync_moment=moment
+                    moment=moment
                 )
                 if self.characteristics_in_space is None:
                     return False
