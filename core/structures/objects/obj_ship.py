@@ -26,6 +26,12 @@ class Ship:
         "changed_characteristics_in_space"
     )
 
+    def __del__(self):
+        del self.characteristics_in_space
+        del self.entry
+        del self.entry_characteristic_in_space
+        pass
+
     def __init__(self, **kwargs):
         self.entry = None
         self.entry_characteristic_in_space = None
