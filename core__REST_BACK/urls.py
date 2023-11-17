@@ -1,11 +1,14 @@
 from django.urls import path
-from . import apiREST
+from .apiREST import vehicle
+from .apiREST import debug
+from .apiREST import ping
 
 urlpatterns = [
-    path('vehicle/ship', apiREST.ShipPosition.as_view()),
-    path('vehicle/ship/track', apiREST.ShipTrack.as_view()),
-    path('vehicle/map/ships', apiREST.ShipsOnMap.as_view()),
-    path('ping', apiREST.Ping.as_view()),
+    path('vehicle/ship', vehicle.ShipPosition.as_view()),
+    path('vehicle/ship/track', vehicle.ShipTrack.as_view()),
+    path('vehicle/map/ships', vehicle.ShipsOnMap.as_view()),
+    path('debug/ping', debug.Ping.as_view()),
+    path('ping', ping.Ping.as_view()),
     # path('balance/substances', apiREST.BalanceListView.as_view()),
     # path('people', apiREST.PostListView.as_view()),
     # path('people/<str:pk>', apiREST.PeopleRetrieveUpdateDeleteView.as_view()),
