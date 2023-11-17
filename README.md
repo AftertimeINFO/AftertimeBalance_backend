@@ -15,7 +15,8 @@ cd AftertimeBalance_backend
 Install tool (optional)
 ```commandline
 pip install poetry
-poetry config virtualenvs.path .\.venv
+poetry config virtualenvs.in-project true
+??? poetry config virtualenvs.path .\.venv
 ```
 
 Install libraries
