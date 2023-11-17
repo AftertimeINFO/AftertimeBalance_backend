@@ -6,3 +6,5 @@
 .env
 /config/settings/dev_databases.py
 /log/general.log
+/config/settings/test_databases.py
+/config/settings/test_databases_postgresql.py
