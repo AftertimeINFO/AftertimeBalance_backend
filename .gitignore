@@ -1,5 +1,7 @@
 # created by virtualenv automatically
-/.venv/
-/.idea/
+/.venv
+/.idea
 /config/settings/settings_secret_key.py
+/config/settings/dev_databases_postgresql.py
 .env
+/config/settings/dev_databases.py
