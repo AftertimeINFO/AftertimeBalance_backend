@@ -99,6 +99,7 @@ class Ship:
         self.capture_entry()
 
         if self.entry is not None:
+            self.uuid = self.entry.uuid
             self.id_mt = self.id_mt
             self.name = self.entry.name
             # self.country = self.entry.country

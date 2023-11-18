@@ -10,6 +10,8 @@ def add(**kwargs):
     """
     return locations.Locations.add(**kwargs)
 
+class tt:
+    pass
 
 def get_by_uuid(**kwargs):
     return locations.Locations.objects.get_by_uuid(**kwargs)

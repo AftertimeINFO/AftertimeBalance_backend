@@ -12,6 +12,9 @@ psycopg2 = "^2.9.7"
 djangorestframework = "^3.14.0"
 django-cors-headers = "^4.2.0"
 python-dotenv = "^1.0.0"
+fastapi = {extras = ["all"], version = "^0.104.1"}
+pydantic = "^2.5.1"
+psutil = "^5.9.6"
 
 
 [build-system]
